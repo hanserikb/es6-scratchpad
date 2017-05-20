@@ -23,13 +23,62 @@
         // return statement (aka implicit return),
         // parameter parenthethis (if there are exact 1 parameter),
         // function body curly brackets (if there are only 1 expression in it)
-        const fullName = names.map(n => `${n} doe`);
-        console.log(fullName)
+        const fullNames = names.map(n => `${n} doe`);
+        console.log(fullNames)
 
 
         // Arrow functions are anonymous, but will be named if they are assigned to a variable
-        const sayFirstName = () => { console.log(`First name is ${fullName[0]}`)}
+        const sayFirstName = () => { console.log(`First name is ${fullNames[0]}`)}
         sayFirstName();
+
+
+        // ****
+        // If you need to implicit return an object literal, put parenthethis around it!
+        const race = '100m'
+        const competitionsResult = fullNames.map((n, i) => ({
+            name: n,
+            position: i + 1,
+            race: race
+        }));
+
+        console.table(competitionsResult);
     })();
+
+
+    const ages = [2, 44, 12, 25, 74, 9, 33, 62, 78];
+    const oldies = ages.filter(a => a >= 70);
+    console.log(oldies);
+
+    // The this will not be rebound
+    // It's instead inerited from the parent scope
+    // Beware of this when for example binding a click handler
+    const body = document.querySelector('body');
+    body.addEventListener('click', () => {
+        console.log(this);
+        // 'this' in there is the window object, since the fuction isnt bound to the caller executing object (body)
+    });
+
+    // ..instead, a normal function expression should be used in this case, binding the value of this to the body object
+    body.addEventListener('click', function() {
+        console.log(this);
+        this.classList.add('filled');
+
+        // Note that if you want to access the clicked element via the 'this' variable in nested methods,
+        // the non-this-binding nature of arrow functions can be used to avoid the classic that = this trick.
+        setInterval(() => {
+            // 'this' in this context is bound to the body element, not the window object (where the setInterval method is located)
+            this.classList.toggle('filled');
+        }, 1000);
+
+    })
   </script>
+  <style>
+    body, html {
+        height: 100%;
+        width: 100%;
+    }
+    body.filled {
+        background: red;
+    }
+  </style>
 </html>
