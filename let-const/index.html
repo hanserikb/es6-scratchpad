@@ -15,6 +15,9 @@
   </body>
   <script>
     (function() {
+        // *****
+        // Let, var, const
+
         // ..var has function scope..
         var varScoped = true;
 
@@ -36,6 +39,8 @@
         // Since let assignments is block-scoped, its still true
         console.log(letScoped);
 
+
+        // *****
         // The function invoked inside the timeout method will log
         // 10 for all iterations of the for-loop
         for (var i = 0 ; i < 10 ; i++) {
@@ -44,7 +49,7 @@
             }, 10)
         }
 
-        // The variable assigned with the let-statement is bound to the
+        // The value assigned with the let-statement is bound to the
         // scope of the for-loop, making the delayed function log the correct values
         setTimeout(function() {
             for (let i = 0 ; i < 10 ; i++) {
@@ -54,6 +59,22 @@
             }
         }, 1000);
 
+
+        // *****
+        // Values assigned with the const statement cannot be redeclared
+        // but not that its properties can be changed!
+        const person = {
+            age: 29,
+            name: 'Hans'
+        };
+        console.log('My age is ' + person.age);
+        person.age = ++person.age;
+        console.log('In a year, my age will be ' + person.age);
+
+        person = {
+            age: 29,
+            name: 'Hans'
+        }
     })();
   </script>
 </html>
