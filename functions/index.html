@@ -69,8 +69,24 @@
             // 'this' in this context is bound to the body element, not the window object (where the setInterval method is located)
             this.classList.toggle('filled');
         }, 1000);
+    });
 
-    })
+
+
+
+    // ES6 brings default function values, so instead of doing the following:
+    /*
+        function calculateBill(total, tax, tip) {
+            return total + (total * tax) + (total + tip);
+        }
+        const firstBill = calculateBill(1000, 0.33, 0);
+    */
+
+    // .. it can be written like this
+    const calculateBill = (total, tax = 0.33, tip = 0) => total + (total * tax) + (total + tip);
+    const theBill = calculateBill(1000);
+    console.log(theBill);
+
   </script>
   <style>
     body, html {
