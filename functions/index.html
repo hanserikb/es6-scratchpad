@@ -87,6 +87,30 @@
     const theBill = calculateBill(1000);
     console.log(theBill);
 
+
+    // So - normal functions is preferred to be used..
+    // When you need to add a method to an object
+    const myCar = {
+        brand: 'Volvo',
+        start: function() {
+
+        }
+    };
+
+    // When you need to add prototype methods
+    function Car(brand) { this.brand = brand; }
+    Car.prototype.getBrand = function() {
+        // If this would be an arrow function, 'this' would be the window object.
+        return this.brand;
+    };
+
+    // When you need to access the arguments object
+    const count = function count() {
+        return Array.from(arguments).reduce((prev, curr) => {
+            return prev + curr;
+        }, 0);
+    }
+    console.log(count(1, 2, 3, 4, 10))
   </script>
   <style>
     body, html {
