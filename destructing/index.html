@@ -50,6 +50,28 @@
         const settings = { height: 100, width: 200, backgroundColor: 'blue' };
         const  { width, height, backgroundColor, fontSize = '10' } = settings
         console.log(fontSize); // 10
+
+        // ****
+        //
+        // A combination of renaming and default settings
+        // 300 will be picked from the destructed object's w parameter and renamed to elementWidth
+        // There are no h parameter, therefore the default value 300 will be set to the renamed elementHeight variable.
+        const { w: elementWidth = 100, h: elementHeight = 300 } = { w: 300 };
+        console.log(elementWidth); // 300
+        console.log(elementHeight); // 300
+
+
+        // ***
+        // Array destructing
+        const finalists = ['Bolt', 'Owens', 'Radcliffe', 'Bekele'];
+        let [ gold, silver, bronze ] = finalists;
+        console.log(gold);
+        console.log(silver);
+        console.log(bronze);
+
+        const details = 'Bolt,22,11, 4, 5, 2, 33';
+        let [runnerName, goldMedals, silverMedals, ...otherMedals] = details.split(',');
+        console.log(runnerName, goldMedals, silverMedals, otherMedals)
     })();
 </script>
 
