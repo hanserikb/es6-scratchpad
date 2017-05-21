@@ -101,7 +101,7 @@
         // Destructuring function arguments
         // Wrapping the function parameters with curly brackets will destructure the passed object into
         // variables with the defined names, making you not having to pass arguments in a particular order
-        function calcTip({ total, tip = 0.1, tax = 0.25 }) {
+        function calcTip({ total, tip = 0.1, tax = 0.25 } = {}) {
             return total + (tip * total) + (tax * total);
         }
 
