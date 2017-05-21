@@ -107,12 +107,40 @@
         }
 
         function sanitize(strings, ...values) {
-            return ExternalSanitizeService(strings.reduce((prev, curr, i) => {
+            return ExternalSantizeService(strings.reduce((prev, curr, i) => {
                 return `${prev}${curr}${values[i] || ''}`;
             }, ''));
         }
         let username = `Hans<img src="foo.png" onload="doEvil()" />`;
         let sanitizedString = sanitize`${username}`;
+
+
+        // ****
+        // New string methods
+        let licenseNumber = 'ACJ-293-S8E';
+        let socialSecurityNhmber = '1973993813';
+
+
+        // Startswith (case sensitive)
+        // Accepts a 2nd parameter that tells the method to ignore the first x numbers of characters.
+        console.log(licenseNumber.startsWith('ACJ')); // true
+        console.log(licenseNumber.startsWith('acj')); // false
+        console.log(licenseNumber.startsWith('293', 4)); // true
+
+        // Endswith (case sensitive)
+        // Accepts a 2nd parameter to use the first x numbers of characters, and ignore the rest
+        console.log(licenseNumber.endsWith('S8E'));
+        console.log(licenseNumber.endsWith('s8E')); // false
+        console.log(licenseNumber.endsWith('293', 7)); // false
+
+        // Includes (case sensitive)
+        console.log(socialSecurityNhmber.includes('1973')) //true
+
+        // Repeat
+        // Repeats the string x times
+        console.log(`${'na'.repeat(9)} batman!`);
+
+
     })();
 </script>
 
