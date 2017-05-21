@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Title</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <div id="content"></div>
+</body>
+<script>
+    (function () {
+        // The for of-loop can iterate over collections that aren't true array, like NodeCollections and arguments
+        function addNumbers() {
+            let total = 0;
+            for (const arg of arguments) {
+                total += arg
+            }
+            return total;
+        }
+
+        // If you modify the prototype of the Array or add properties to an array,
+        // the for of-loop will still only iterate over the expected items. (as opposed to the for in-loop)
+
+        // They are also breakable!
+    })();
+</script>
+
+</html>
