@@ -1,0 +1,1 @@
+This repo is a scratchpad where i'll be taking notes when learning ES6. I'm following Wes Bos' course "ES6 for everyone". http://wesbos.com
