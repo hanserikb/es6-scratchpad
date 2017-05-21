@@ -34,18 +34,16 @@
   const totalSeconds = Array.from(document.querySelectorAll('li'))
 
   // Filter for only the elements that contain the word 'flexbox'
-  .filter(e => e.innerText.includes('Flexbox'))
+  .filter(e => e.textContent.includes('Flexbox'))
 
   // map down to a list of time strings
   .map(f => f.dataset.time)
 
   // map to an array of seconds
-  .map(f => parseInt(f.split(':')[0]) + 60 + parseInt(f.split(':')[1]))
+  .map(f => ((times = f.split(':').map(t => parseFloat(t))) => times[0]*60 + times[1])())
 
   // reduce to get total
-  .reduce((prev, curr) => {
-      return prev + curr;
-  }, 0);
+  .reduce((total, curr) => total + curr, 0);
 
   console.log(totalSeconds);
 </script>
