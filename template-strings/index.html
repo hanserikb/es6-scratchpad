@@ -50,7 +50,22 @@
         </ul>
      `;
 
-     document.write(petInfo)
+     document.write(petInfo);
+
+     // ****
+     // Template literals can be 'tagged' which means that instead of letting the browser take care of the actual concatenation,
+     // You assign a function to the string that will recieve an array with the splitted string and also the values joining them together
+     // as additional parameters (which in this case is grabbed with the rest operator (...)).
+     function highlight(strings, ...values) {
+         let str = '';
+         strings.forEach((string, i) => {
+             str += `${string} <span class="highlight">${values[i] || ''}</span>`
+         });
+        return str;
+     }
+
+     let sentence = highlight`My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
+     console.log(sentence)
     })();
   </script>
 </html>
