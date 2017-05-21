@@ -72,6 +72,43 @@
         const details = 'Bolt,22,11, 4, 5, 2, 33';
         let [runnerName, goldMedals, silverMedals, ...otherMedals] = details.split(',');
         console.log(runnerName, goldMedals, silverMedals, otherMedals)
+
+
+
+        // ****
+        // Swapping variables with destructing
+        let activePlayer = 'Zlatan';
+        let benchPlayer = 'Messi';
+        [ activePlayer, benchPlayer ] = [ benchPlayer, activePlayer ]
+
+
+
+        // ****
+        // Destructuring function returns
+        function convertCurrency(amount) {
+            return {
+                USD: amount * 0.12,
+                GBP: amount * 0.18,
+                AUD: amount * 1.01,
+            };
+        }
+
+        const { USD } = convertCurrency(100);
+        console.log(USD);
+
+
+        // ***
+        // Destructuring function arguments
+        // Wrapping the function parameters with curly brackets will destructure the passed object into
+        // variables with the defined names, making you not having to pass arguments in a particular order
+        function calcTip({ total, tip = 0.1, tax = 0.25 }) {
+            return total + (tip * total) + (tax * total);
+        }
+
+        calcTip({
+            total: 100,
+            tip: 0.2
+        });
     })();
 </script>
 
