@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Title</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+
+  </body>
+  <script>
+    (function() {
+     // ****
+     // New template string syntax
+     let name = 'Hans';
+     let age = 28;
+     let homeTown = 'Stockholm';
+
+     let pets = [{
+         name: 'Fluffy',
+         monthOld: 25,
+         type: 'Horse'
+     }, {
+         name: 'Rosa',
+         monthOld: 67,
+         type: 'Cow'
+     }];
+     let string = 'My name is ' + name + '. I\m ' + age + ' years old and is currently living in ' + homeTown;
+
+     // With the new template literal syntax there is no need to string concatenation with the plus sign.
+     // Variables, functions, and other js code can be inserted
+     // directly in the string literal when wrapping it with backticks.
+     let newString = `My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
+
+     console.log(newString);
+
+     // Specially useful when manipulating HTML
+     let petInfo = `
+        <h2>Pets</h2>
+        <p>These are my pets (i wish!)</p>
+        <ul>
+            ${pets.map(p => `
+                <li>${p.name} - ${p.type}, ${Math.floor(p.monthOld / 12)} years old</li>
+            `).join(' ')}
+        </ul>
+     `;
+
+     document.write(petInfo)
+    })();
+  </script>
+</html>
