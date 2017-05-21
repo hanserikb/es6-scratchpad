@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Title</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <div id="content"></div>
+</body>
+<script>
+    (function () {
+       // ****
+       // Array.from & Array.of
+       // These are static methods on the Array constructor, not prototype methods.
+       // (they are not available on an actual array)
+       // Useful to turn arguments or Nodelists into iterables.
+       console.log(document.querySelectorAll('p') instanceof Array); // false
+       console.log(Array.from(document.querySelectorAll('p')) instanceof Array); // true
+
+       // It's second argument is a function that acts as the map method.
+
+       // This example returns an array of strings in the queried paragraph tags
+       Array.from(document.querySelectorAll('p'), p => p.textContent);
+
+       // arguments to Array.
+       function sumAll() {
+           return Array.from(arguments).reduce((prev, curr) => prev + curr, 0);
+       }
+
+       console.log(sumAll(1, 2, 3, 4, 5, 6));
+
+       // Array.of creates an array from the arguments you pass.
+       console.log(Array.of(1, 2, 'Hans', true)); // [1, 2, 'Hans', true]
+    })();
+</script>
+
+</html>
