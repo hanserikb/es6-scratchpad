@@ -44,7 +44,12 @@
         console.log(facebookLink);
         console.log(twitterLink);
 
-
+        // ****
+        // Default settings
+        // If the property cant be found on the destructed object, a default value will be picked, if set.
+        const settings = { height: 100, width: 200, backgroundColor: 'blue' };
+        const  { width, height, backgroundColor, fontSize = '10' } = settings
+        console.log(fontSize); // 10
     })();
 </script>
 
