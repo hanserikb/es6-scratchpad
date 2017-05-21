@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,38 +10,40 @@
     <title>Title</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="assets/style.css">
-  </head>
-  <body>
+</head>
 
-  </body>
-  <script>
-    (function() {
-     // ****
-     // New template string syntax
-     let name = 'Hans';
-     let age = 28;
-     let homeTown = 'Stockholm';
+<body>
+    <div id="content"></div>
+</body>
+<script>
+    (function () {
+        // ****
+        // New template string syntax
+        let name = 'Hans';
+        let age = 28;
+        let homeTown = 'Stockholm';
 
-     let pets = [{
-         name: 'Fluffy',
-         monthOld: 25,
-         type: 'Horse'
-     }, {
-         name: 'Rosa',
-         monthOld: 67,
-         type: 'Cow'
-     }];
-     let string = 'My name is ' + name + '. I\m ' + age + ' years old and is currently living in ' + homeTown;
+        let pets = [{
+            name: 'Fluffy',
+            monthOld: 25,
+            type: 'Horse'
+        }, {
+            name: 'Rosa',
+            monthOld: 67,
+            type: 'Cow'
+        }];
+        let string = 'My name is ' + name + '. I\m ' + age + ' years old and is currently living in ' + homeTown;
 
-     // With the new template literal syntax there is no need to string concatenation with the plus sign.
-     // Variables, functions, and other js code can be inserted
-     // directly in the string literal when wrapping it with backticks.
-     let newString = `My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
+        // With the new template literal syntax there is no need to string concatenation with the plus sign.
+        // Variables, functions, and other js code can be inserted
+        // directly in the string literal when wrapping it with backticks.
+        let newString = `My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
 
-     console.log(newString);
+        console.log(newString);
 
-     // Specially useful when manipulating HTML
-     let petInfo = `
+        // Specially useful when manipulating HTML
+        let petInfo =
+            `
         <h2>Pets</h2>
         <p>These are my pets (i wish!)</p>
         <ul>
@@ -50,22 +53,52 @@
         </ul>
      `;
 
-     document.write(petInfo);
+        document.write(petInfo);
 
-     // ****
-     // Template literals can be 'tagged' which means that instead of letting the browser take care of the actual concatenation,
-     // You assign a function to the string that will recieve an array with the splitted string and also the values joining them together
-     // as additional parameters (which in this case is grabbed with the rest operator (...)).
-     function highlight(strings, ...values) {
-         let str = '';
-         strings.forEach((string, i) => {
-             str += `${string} <span class="highlight">${values[i] || ''}</span>`
-         });
-        return str;
-     }
+        // ****
+        // Template literals can be 'tagged' which means that instead of letting the browser take care of the actual concatenation,
+        // You assign a function to the string that will recieve an array with the splitted string and also the values joining them together
+        // as additional parameters (which in this case is grabbed with the rest operator (...)).
+        function highlight(strings, ...values) {
+            let str = '';
+            strings.forEach((string, i) => {
+                str += `${string} <span class="highlight">${values[i] || ''}</span>`
+            });
+            return str;
+        }
 
-     let sentence = highlight`My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
-     console.log(sentence)
+        let sentence = highlight `My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
+        console.log(sentence);
+
+
+        // ****
+        // Another example on how string tagging can be used
+        let links = {
+            'css': 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+            'javascript': 'https://developer.mozilla.org/sv-SE/docs/Web/JavaScript',
+            'nodejs': 'https://nodejs.org/en/'
+        }
+
+        function addLink(strings, ...values) {
+            values = values.map(v => {
+                if (links[v.toLowerCase()]) {
+                    return `<a href="${links[v.toLowerCase()]}">${v}</a>`;
+                } else {
+                    return v;
+                }
+            });
+
+            return strings.reduce((prev, curr, i) => {
+                return `${prev}${curr}${values[i] || ''}`;
+            }, '');
+        }
+
+        const contentDiv = document.querySelector('#content');
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = addLink`Hello. I know ${'CSS'}, ${'Javascript'} and ${'NodeJS'}`;
+
+        contentDiv.appendChild(paragraph);
     })();
-  </script>
+</script>
+
 </html>
