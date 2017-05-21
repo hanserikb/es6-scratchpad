@@ -96,8 +96,23 @@
         const contentDiv = document.querySelector('#content');
         const paragraph = document.createElement('p');
         paragraph.innerHTML = addLink`Hello. I know ${'CSS'}, ${'Javascript'} and ${'NodeJS'}`;
-
         contentDiv.appendChild(paragraph);
+
+        // ****
+        // Tagging can also be used to sanitize user defined data, for example
+
+        // Fake sanitize library
+        function ExternalSantizeService(str) {
+            return str;
+        }
+
+        function sanitize(strings, ...values) {
+            return ExternalSanitizeService(strings.reduce((prev, curr, i) => {
+                return `${prev}${curr}${values[i] || ''}`;
+            }, ''));
+        }
+        let username = `Hans<img src="foo.png" onload="doEvil()" />`;
+        let sanitizedString = sanitize`${username}`;
     })();
 </script>
 
