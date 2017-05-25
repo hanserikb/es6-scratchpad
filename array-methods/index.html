@@ -81,6 +81,17 @@
        const minorPresent = ages.some(age => age < 18); // true
        const retiredPresent = ages.some(age => age >= 65); // false
        const allOldEnough = ages.every(age => age >= 18); // false
+
+       // ****
+       // The spread operator can be used to concatenate multiple arrays into one
+
+       const group1 = ['Hans', 'Johan', 'Erik'];
+       const group2 = ['Lisa', 'Stina', 'Anna'];
+       const allPeople = [...group1, ...group2];
+
+       // It can also be used to copy an array, instead of using the concat/splice trick
+       const allThePeople = [...allPeople];
+
     })();
 </script>
 
