@@ -1,4 +1,13 @@
-(function() {
+/* eslint-disable no-var */
+/* eslint-disable block-scoped-var */
+/* eslint-disable no-redeclare */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable vars-on-top */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-plusplus */
+
+(() => {
   // *****
   // Let, var, const
 
@@ -28,18 +37,18 @@
   // The function invoked inside the timeout method will log
   // 10 for all iterations of the for-loop
   for (var i = 0; i < 10; i++) {
-    setTimeout(function() {
+    setTimeout(() => {
       console.log('i is: ', i);
-    }, 10)
+    }, 10);
   }
 
   // The value assigned with the let-statement is bound to the
   // scope of the for-loop, making the delayed function log the correct values
-  setTimeout(function() {
+  setTimeout(() => {
     for (let i = 0; i < 10; i++) {
-      setTimeout(function() {
+      setTimeout(() => {
         console.log('i is: ', i);
-      }, 500 * i)
+      }, 500 * i);
     }
   }, 1000);
 
@@ -49,9 +58,10 @@
   // but not that its properties can be changed!
   const person = {
     age: 29,
-    name: 'Hans'
+    name: 'Hans',
   };
-  console.log('My age is ' + person.age);
-  person.age = ++person.age;
-  console.log('In a year, my age will be ' + person.age);
+
+  console.log(`My age is ${person.age}`);
+  person.age += 1;
+  console.log(`In a year, my age will be ${person.age}`);
 })();

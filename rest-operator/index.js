@@ -1,9 +1,9 @@
-(function() {
+((document) => {
   // *****
   // Rest operator
   // The rest operator lets us collect an indefinite amount of arguments as an array.
 
-  let results = ['Sweden', 'Canada', 'Russia', 'Finland', 'Slovakia', 'Denmark']
+  let results = ['Sweden', 'Canada', 'Russia', 'Finland', 'Slovakia', 'Denmark'];
 
   function formatResult(gold, silver, bronze, ...rest) {
     return `Results were following: <br />
@@ -32,5 +32,4 @@
   let team = ['Hans', 'Erik', 'Gustav', 'Johan', 'Bengt'];
   let [captain, assistant, ...players] = team;
   console.log(captain, assistant, players);
-
-})();
+})(window.document);

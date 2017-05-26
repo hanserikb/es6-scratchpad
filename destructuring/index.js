@@ -1,4 +1,5 @@
-(function() {
+/* eslint-disable no-unused-vars */
+(() => {
   let me = {
     name: 'Hans Bentlöv',
     age: 28,
@@ -10,16 +11,16 @@
     links: {
       social: {
         facebook: 'http://www.facebook.com/hanserikb',
-        twitter: 'http://www.twitter.com/hanserikb'
+        twitter: 'http://www.twitter.com/hanserikb',
       },
-      website: 'http://www.bentlov.se'
-    }
-  }
+      website: 'http://www.bentlov.se',
+    },
+  };
 
   // Simple destructuring
   const {
     name,
-    age
+    age,
   } = me;
   console.log(name);
   console.log(age);
@@ -27,7 +28,7 @@
   // Destructuring nested data with renaming
   const {
     facebook: facebookLink,
-    twitter: twitterLink
+    twitter: twitterLink,
   } = me.links.social;
   console.log(facebookLink);
   console.log(twitterLink);
@@ -38,14 +39,14 @@
   const settings = {
     height: 100,
     width: 200,
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   };
   const {
     width,
     height,
     backgroundColor,
-    fontSize = '10'
-  } = settings
+    fontSize = '10',
+  } = settings;
   console.log(fontSize); // 10
 
   // ****
@@ -55,9 +56,9 @@
   // There are no h parameter, therefore the default value 300 will be set to the renamed elementHeight variable.
   const {
     w: elementWidth = 100,
-    h: elementHeight = 300
+    h: elementHeight = 300,
   } = {
-    w: 300
+    w: 300,
   };
   console.log(elementWidth); // 300
   console.log(elementHeight); // 300
@@ -73,16 +74,14 @@
 
   const details = 'Bolt,22,11, 4, 5, 2, 33';
   let [runnerName, goldMedals, silverMedals, ...otherMedals] = details.split(',');
-  console.log(runnerName, goldMedals, silverMedals, otherMedals)
-
+  console.log(runnerName, goldMedals, silverMedals, otherMedals);
 
 
   // ****
   // Swapping variables with destructing
   let activePlayer = 'Zlatan';
   let benchPlayer = 'Messi';
-  [activePlayer, benchPlayer] = [benchPlayer, activePlayer]
-
+  [activePlayer, benchPlayer] = [benchPlayer, activePlayer];
 
 
   // ****
@@ -96,7 +95,7 @@
   }
 
   const {
-    USD
+    USD,
   } = convertCurrency(100);
   console.log(USD);
 
@@ -108,13 +107,13 @@
   function calcTip({
     total,
     tip = 0.1,
-    tax = 0.25
+    tax = 0.25,
   } = {}) {
     return total + (tip * total) + (tax * total);
   }
 
   calcTip({
     total: 100,
-    tip: 0.2
+    tip: 0.2,
   });
 })();

@@ -1,26 +1,29 @@
-(function() {
+/* eslint-disable prefer-template */
+/* eslint-disable no-unused-vars */
+((document) => {
   // ****
   // New template string syntax
-  let name = 'Hans';
-  let age = 28;
-  let homeTown = 'Stockholm';
+  const name = 'Hans';
+  const age = 28;
+  const homeTown = 'Stockholm';
 
   let pets = [{
     name: 'Fluffy',
     monthOld: 25,
-    type: 'Horse'
+    type: 'Horse',
   }, {
     name: 'Rosa',
     monthOld: 67,
-    type: 'Cow'
+    type: 'Cow',
   }];
-  let string = 'My name is ' + name + '. I\m ' + age + ' years old and is currently living in ' + homeTown;
+
+  let oldString = 'My name is ' + name + '. I\'m ' + age + ' years old and is currently living in ' + homeTown;
+  console.log(oldString);
 
   // With the new template literal syntax there is no need to string concatenation with the plus sign.
   // Variables, functions, and other js code can be inserted
   // directly in the string literal when wrapping it with backticks.
   let newString = `My name is ${name}. I'm ${age} years old and is currently living in ${homeTown}`;
-
   console.log(newString);
 
   // Specially useful when manipulating HTML
@@ -44,7 +47,7 @@
   function highlight(strings, ...values) {
     let str = '';
     strings.forEach((string, i) => {
-      str += `${string} <span class="highlight">${values[i] || ''}</span>`
+      str += `${string} <span class="highlight">${values[i] || ''}</span>`;
     });
     return str;
   }
@@ -56,23 +59,20 @@
   // ****
   // Another example on how string tagging can be used
   let links = {
-    'css': 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-    'javascript': 'https://developer.mozilla.org/sv-SE/docs/Web/JavaScript',
-    'nodejs': 'https://nodejs.org/en/'
-  }
+    css: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+    javascript: 'https://developer.mozilla.org/sv-SE/docs/Web/JavaScript',
+    nodejs: 'https://nodejs.org/en/',
+  };
 
   function addLink(strings, ...values) {
-    values = values.map(v => {
+    let newValues = values.map((v) => {
       if (links[v.toLowerCase()]) {
         return `<a href="${links[v.toLowerCase()]}">${v}</a>`;
-      } else {
-        return v;
       }
+      return v;
     });
 
-    return strings.reduce((prev, curr, i) => {
-      return `${prev}${curr}${values[i] || ''}`;
-    }, '');
+    return strings.reduce((prev, curr, i) => `${prev}${curr}${newValues[i] || ''}`, '');
   }
 
   const contentDiv = document.querySelector('#content');
@@ -89,11 +89,9 @@
   }
 
   function sanitize(strings, ...values) {
-    return ExternalSantizeService(strings.reduce((prev, curr, i) => {
-      return `${prev}${curr}${values[i] || ''}`;
-    }, ''));
+    return ExternalSantizeService(strings.reduce((prev, curr, i) => `${prev}${curr}${values[i] || ''}`, ''));
   }
-  let username = `Hans<img src="foo.png" onload="doEvil()" />`;
+  let username = 'Hans<img src="foo.png" onload="doEvil()" />';
   let sanitizedString = sanitize `${username}`;
 
 
@@ -116,11 +114,9 @@
   console.log(licenseNumber.endsWith('293', 7)); // false
 
   // Includes (case sensitive)
-  console.log(socialSecurityNhmber.includes('1973')) //true
+  console.log(socialSecurityNhmber.includes('1973')); // true
 
   // Repeat
   // Repeats the string x times
   console.log(`${'na'.repeat(9)} batman!`);
-
-
-})();
+})(window.document);

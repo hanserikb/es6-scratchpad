@@ -1,11 +1,14 @@
-(function() {
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-rest-params */
+
+((document) => {
   // ****
   // Array.from & Array.of
   // These are static methods on the Array constructor, not prototype methods.
   // (they are not available on an actual array)
   // Useful to turn arguments or Nodelists into iterables.
-  console.log(document.querySelectorAll('p') instanceof Array); // false
-  console.log(Array.from(document.querySelectorAll('p')) instanceof Array); // true
+  console.log(Array.isArray(document.querySelectorAll('p'))); // false
+  console.log(Array.isArray(Array.from(document.querySelectorAll('p')))); // true
 
   // It's second argument is a function that acts as the map method.
 
@@ -30,21 +33,21 @@
   let twitterApiResponse = {
     status: 200,
     tweets: [{
-        id: 1231414,
-        userId: 1234,
-        text: '......'
-      },
-      {
-        id: 5124124,
-        userId: 9282,
-        text: '......'
-      },
-      {
-        id: 1514513,
-        userId: 1234,
-        text: '......'
-      }
-    ]
+      id: 1231414,
+      userId: 1234,
+      text: '......',
+    },
+    {
+      id: 5124124,
+      userId: 9282,
+      text: '......',
+    },
+    {
+      id: 1514513,
+      userId: 1234,
+      text: '......',
+    },
+    ],
   };
 
   let tweet = twitterApiResponse.tweets.find(t => t.id === 5124124);
@@ -72,5 +75,4 @@
 
   // It can also be used to copy an array, instead of using the concat/splice trick
   const allThePeople = [...allPeople];
-
-})();
+})(window.document);

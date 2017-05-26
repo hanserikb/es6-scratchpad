@@ -1,9 +1,13 @@
-(function() {
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-rest-params */
+/* eslint-disable no-restricted-syntax */
+
+(() => {
   // The for of-loop can iterate over collections that aren't true array, like NodeCollections and arguments
   function addNumbers() {
     let total = 0;
     for (const arg of arguments) {
-      total += arg
+      total += arg;
     }
     return total;
   }

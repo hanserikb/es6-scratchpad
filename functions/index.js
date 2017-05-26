@@ -1,4 +1,9 @@
-(() => {
+/* eslint-disable object-shorthand */
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-rest-params */
+
+((document) => {
   // ****
   // Arrow functions
   const names = ['Jane', 'John', 'June'];
@@ -8,23 +13,23 @@
   // parameter parenthethis (if there are exact 1 parameter),
   // function body curly brackets (if there are only 1 expression in it)
   const fullNames = names.map(n => `${n} doe`);
-  console.log(fullNames)
+  console.log(fullNames);
 
 
   // Arrow functions are anonymous, but will be named if they are assigned to a variable
   const sayFirstName = () => {
-    console.log(`First name is ${fullNames[0]}`)
-  }
+    console.log(`First name is ${fullNames[0]}`);
+  };
   sayFirstName();
 
 
   // ****
   // If you need to implicit return an object literal, put parenthethis around it!
-  const race = '100m'
+  const race = '100m';
   const competitionsResult = fullNames.map((n, i) => ({
     name: n,
     position: i + 1,
-    race: race
+    race: race,
   }));
 
   console.table(competitionsResult);
@@ -44,7 +49,7 @@
   });
 
   // ..instead, a normal function expression should be used in this case, binding the value of this to the body object
-  body.addEventListener('click', function() {
+  body.addEventListener('click', function () {
     console.log(this);
     this.classList.add('filled');
 
@@ -55,8 +60,6 @@
       this.classList.toggle('filled');
     }, 1000);
   });
-
-
 
 
   // ES6 brings default function values, so instead of doing the following:
@@ -77,26 +80,21 @@
   // When you need to add a method to an object
   const myCar = {
     brand: 'Volvo',
-    start: function() {
-
-    }
+    start: function () {},
   };
 
   // When you need to add prototype methods
   function Car(brand) {
     this.brand = brand;
   }
-  Car.prototype.getBrand = function() {
+  Car.prototype.getBrand = function () {
     // If this would be an arrow function, 'this' would be the window object.
     return this.brand;
   };
 
   // When you need to access the arguments object
   const count = function count() {
-    return Array.from(arguments).reduce((prev, curr) => {
-      return prev + curr;
-    }, 0);
-  }
-  console.log(count(1, 2, 3, 4, 10))
-
-})();
+    return Array.from(arguments).reduce((prev, curr) => prev + curr, 0);
+  };
+  console.log(count(1, 2, 3, 4, 10));
+})(window.document);

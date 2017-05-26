@@ -1,4 +1,5 @@
-(function() {
+/* eslint-disable no-unused-vars */
+(() => {
   // ****
   // Object literal news
 
@@ -15,34 +16,27 @@
     age,
     homeTown,
     gender,
-    hasDriversLicense
-  }
+    hasDriversLicense,
+  };
 
   // We can omit the colon and function keyword from function properties
   let app = {
-    boot(config) {
-
-    },
-    shutdown(exitMessage) {
-
-    }
-  }
+    boot(config) {},
+    shutdown(exitMessage) {},
+  };
 
 
   // We can now create dynamic properties
   let key = 'Car';
-  let createCar = function(brand, model, ...extras) {
-    return {
-      brand,
-      model,
-      [`run${key}`]() {
-        engine.start();
-      },
-      extras
-    }
-  }
+  let createCar = (brand, model, ...extras) => ({
+    brand,
+    model,
+    [`run${key}`]() {
+      /* eslint-disable no-undef */
+      engine.start();
+    },
+    extras,
+  });
 
   console.log(createCar('Volvo', 'XC90', 'Airbag', 'Wifi', 'GPS'));
-
-
 })();
