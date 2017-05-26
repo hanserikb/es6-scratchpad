@@ -6,61 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Title</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="assets/style.css">
+    <title>Object literal improvements</title>
   </head>
   <body>
 
   </body>
-  <script>
-    (function() {
-        // ****
-        // Object literal news
-
-        // When assigning variables to an object literal where the properties is going to have the same name as
-        // the variables, there is no need to repeat yourself, like age: age, gender: gender.
-        let name = 'Hans';
-        let age = 28;
-        let homeTown ='Stockholm';
-        let gender = 'Male';
-        let hasDriversLicense = true;
-
-        let me = {
-            firstName: name,
-            age,
-            homeTown,
-            gender,
-            hasDriversLicense
-        }
-
-        // We can omit the colon and function keyword from function properties
-        let app = {
-            boot(config) {
-
-            },
-            shutdown(exitMessage) {
-
-            }
-        }
-
-
-        // We can now create dynamic properties
-        let key = 'Car';
-        let createCar = function(brand, model, ...extras) {
-            return {
-                brand,
-                model,
-                [`run${key}`]() {
-                    engine.start();
-                },
-                extras
-            }
-        }
-
-        console.log(createCar('Volvo', 'XC90', 'Airbag', 'Wifi', 'GPS'));
-
-
-    })();
-  </script>
+  <script src="./index.js"></script>
 </html>
